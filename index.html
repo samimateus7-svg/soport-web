@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corporate Support Center - Environmental Analytics</title>
+    <style>
+        :root {
+            --primary: #0D47A1;
+            --primary-dark: #1A237E;
+            --bg: #F4F6F9;
+            --text: #333333;
+            --surface: #FFFFFF;
+            --border: #D0D7DE;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--primary-dark);
+            color: white;
+            padding: 2rem 5%;
+            text-align: left;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 0.3rem;
+        }
+
+        header p {
+            color: #BBDEFB;
+            font-size: 0.95rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 5%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: var(--surface);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .card h2 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--bg);
+            padding-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+            font-size: 0.9rem;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            border-color: var(--primary);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .faq-item {
+            margin-bottom: 1.2rem;
+            background: var(--bg);
+            padding: 1rem;
+            border-radius: 6px;
+        }
+
+        .faq-item h3 {
+            font-size: 0.95rem;
+            color: var(--primary-dark);
+            margin-bottom: 0.4rem;
+        }
+
+        .faq-item p {
+            font-size: 0.9rem;
+            color: #555555;
+        }
+
+        .success-msg {
+            background-color: #E8F5E9;
+            color: #2E7D32;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-top: 1rem;
+            display: none;
+            font-weight: 600;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>🎧 Centro de Soporte Técnico Oficial</h1>
+        <p>Environmental Analytics Corporate Suite — Gestión de Incidencias en Línea</p>
+    </header>
+
+    <div class="container">
+        <div class="card">
+            <h2>Generar Ticket de Soporte</h2>
+            <form id="ticketForm" action="https://formspree.io/f/mdajolar" method="POST">
+                <div class="form-group">
+                    <label for="email">Correo Corporativo:</label>
+                    <input type="email" id="email" name="email" required placeholder="usuario@empresa.com">
+                </div>
+                <div class="form-group">
+                    <label for="priority">Prioridad del Problema:</label>
+                    <select id="priority" name="prioridad">
+                        <option value="Baja">Baja - Consulta General</option>
+                        <option value="Media">Media - Fallo en Módulo</option>
+                        <option value="Alta">Alta - Error Crítico de Operación</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="desc">Descripción de la Incidencia:</label>
+                    <textarea id="desc" name="descripcion" required placeholder="Escriba detalladamente el error encontrado..."></textarea>
+                </div>
+                <button type="submit" id="submitBtn">Enviar Ticket a IT</button>
+            </form>
+            <div id="successMessage" class="success-msg"></div>
+        </div>
+
+        <div class="card">
+            <h2>Base de Conocimientos (FAQ)</h2>
+            
+            <div class="faq-item">
+                <h3>📌 ¿Cómo se calcula el Agua Virtual?</h3>
+                <p>El Módulo Analítico Hídrico multiplica los kilogramos ingresados por los coeficientes de la Water Footprint Network (WFN).</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>📌 ¿Por qué salta error al ingresar datos?</h3>
+                <p>Por reglas operacionales de auditoría, las cantidades deben ser mayores a 0 y menores a 20,000 unidades/kg.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>📌 ¿Dónde se guardan los datos registrados?</h3>
+                <p>Los datos se compilan dinámicamente en las grillas de memoria caché del sistema. Para persistencia SQL, solicite credenciales a IT.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('ticketForm');
+        const msgBox = document.getElementById('successMessage');
+        const btn = document.getElementById('submitBtn');
+
+        form.addEventListener('submit', async function(event) {
+            event.preventDefault();
+            
+            btn.disabled = true;
+            btn.innerText = "Enviando...";
+            
+            const formData = new FormData(form);
+            const ticketId = Math.floor(Math.random() * (99999 - 45000 + 1)) + 45000;
+            formData.append("Ticket_ID", `#${ticketId}`);
+
+            try {
+                const response = await fetch(form.action, {
+                    method: form.method,
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (response.ok) {
+                    msgBox.innerText = `¡Ticket enviado con éxito a IT! ID de Seguimiento: #${ticketId}. Revisa tu bandeja de entrada.`;
+                    msgBox.style.display = 'block';
+                    form.reset();
+                } else {
+                    msgBox.innerText = "⚠️ Hubo un problema al procesar el servidor de correos.";
+                    msgBox.style.color = "#D32F2F";
+                    msgBox.style.backgroundColor = "#FFEBEE";
+                    msgBox.style.display = 'block';
+                }
+            } catch (error) {
+                msgBox.innerText = "⚠️ Error de red. Comprueba tu conexión a internet.";
+                msgBox.style.color = "#D32F2F";
+                msgBox.style.backgroundColor = "#FFEBEE";
+                msgBox.style.display = 'block';
+            } finally {
+                btn.disabled = false;
+                btn.innerText = "Enviar Ticket a IT";
+            }
+        });
+    </script>
+</body>
+</html>
